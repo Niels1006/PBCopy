@@ -18,18 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # full history needed for gh-pages
-
       - uses: julia-actions/setup-julia@v2
         with:
           version: '1.11'
       - uses: julia-actions/cache@v1
-
-      - name: Install Julia dependencies
+      - name: Install dependencies
         run: julia --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
-
-      - name: Build Julia docs
+      - name: Build and deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: julia --project=docs/ docs/make.jl
@@ -50,7 +45,6 @@ jobs:
 
       # Deploy JS docs to gh-pages branch
       - name: Deploy JS docs to gh-pages
-        if: github.repository == 'your-org/your-repo'  # only deploy from main repo
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
