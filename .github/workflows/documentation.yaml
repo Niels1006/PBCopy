@@ -62,7 +62,7 @@ jobs:
           # Copy new JS docs into docs/js (overwrite existing)
           rm -rf docs/js
           mkdir -p docs/js
-          cp -r path/to/generated/jsdocs/* docs/js/  # adjust this path
+          cp -r docs/js/* docs/js/  # adjust this path
 
           git add docs/js
           if git diff --cached --quiet; then
