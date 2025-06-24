@@ -45,7 +45,7 @@ jobs:
           npm install clean-jsdoc-theme
 
       - name: Generate JS docs
-        run: npx jsdoc --configure jsdocs.json
+        run: npx jsdoc --configure jsdoc.json
 
       # Deploy JS docs to gh-pages branch
       - name: Deploy JS docs to gh-pages
